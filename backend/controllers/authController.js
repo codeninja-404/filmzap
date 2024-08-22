@@ -62,9 +62,41 @@ export const signup = async (req, res) => {
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
+
 export const login = async (req, res) => {
-  res.send("login route");
+  try {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Please fill all fields" });
+    }
+    const user = await User.findOne({ email: email });
+    if (!user) {
+      return res
+        .status(401)
+        .json({ success: false, message: "No user found." });
+    }
+    const isMatch = await bcryptjs.compare(password, user.password);
+    if (!isMatch) {
+      return res
+        .status(401)
+        .json({ success: false, message: "Incorrect password." });
+    }
+    generateTokenAndSetCookie(user._id, res);
+    res.status(200).json({
+      success: true,
+      user: {
+        ...user._doc,
+        password: "",
+      },
+    });
+  } catch (error) {
+    console.log("Error in login controller", error.message);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
 };
+
 export const logout = async (req, res) => {
   try {
     res.clearCookie("jwt-filmzap");
