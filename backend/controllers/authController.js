@@ -66,5 +66,11 @@ export const login = async (req, res) => {
   res.send("login route");
 };
 export const logout = async (req, res) => {
-  res.send("logout route");
+  try {
+    res.clearCookie("jwt-filmzap");
+    res.status(200).json({ success: true, message: "Logged Out Successfully" });
+  } catch (error) {
+    console.log("Error in logout controller", error.message);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
 };
