@@ -1,7 +1,12 @@
 import express from "express";
-import { getTrendingMovie } from "../controllers/movieController.js";
+import {
+  getMovieDetails,
+  getMovieTrailers,
+  getTrendingMovie,
+} from "../controllers/movieController.js";
 const router = express.Router();
 
 router.get("/trending", getTrendingMovie);
-
+router.get("/:id/trailers", getMovieTrailers);
+router.get("/:id/details", getMovieDetails);
 export default router;
