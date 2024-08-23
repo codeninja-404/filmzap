@@ -64,4 +64,20 @@ export const getSimilarMovies = async (req, res) => {
   }
 };
 
-export const getMoviesByCategory = async (req, res) => {};
+export const getMoviesByCategory = async (req, res) => {
+  const { category } = req.params;
+  try {
+    const data = await fetchFromTMDB(
+      `https://api.themoviedb.org/3/movie/${category}?language=en-US&page=1`,
+    );
+    res.status(200).json({ success: true, content: data.results });
+  } catch (error) {
+    if (error.message.includes("404")) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Movies not found" });
+    }
+    console.error("Error in movies by category controller:", error.message);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
+};
