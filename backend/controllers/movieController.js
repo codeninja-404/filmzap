@@ -50,6 +50,18 @@ export const getMovieDetails = async (req, res) => {
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
+export const getMovieCredits = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const data = await fetchFromTMDB(
+      `https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`,
+    );
+    res.status(200).json({ success: true, credits: data.cast });
+  } catch (error) {
+    console.error("Error in movie credits controller:", error.message);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
+};
 
 export const getSimilarMovies = async (req, res) => {
   const { id } = req.params;
