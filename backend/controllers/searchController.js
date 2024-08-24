@@ -97,4 +97,24 @@ export const getSearchHistory = async (req, res) => {
   }
 };
 
-export const removeItemFromSearchHistory = async (req, res) => {};
+export const removeItemFromSearchHistory = async (req, res) => {
+  let { id } = req.params;
+  id = parseInt(id);
+  console.log(id);
+  try {
+    await User.findByIdAndUpdate(req.user._id, {
+      $pull: {
+        searchHistory: { id: id },
+      },
+    });
+    res
+      .status(200)
+      .json({ success: true, message: "Item removed from search history" });
+  } catch (error) {
+    console.error(
+      "Error in remove item from search history controller:",
+      error.message,
+    );
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
+};
