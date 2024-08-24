@@ -34,6 +34,7 @@ export const searchMovie = async (req, res) => {
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
+
 export const searchTv = async (req, res) => {
   const { query } = req.params;
   try {
