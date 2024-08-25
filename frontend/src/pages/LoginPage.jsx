@@ -8,7 +8,6 @@ const LoginPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ email, password });
   };
   return (
     <div className="h-screen w-full hero-bg">

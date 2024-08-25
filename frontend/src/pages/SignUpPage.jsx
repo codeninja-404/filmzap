@@ -9,7 +9,6 @@ const SignUpPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ email, password, username });
   };
   return (
     <div className="h-screen w-full hero-bg">
