@@ -1,12 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+body {
+  @apply text-white;
+}
 .hero-bg {
   @apply bg-cover bg-center;
   background-image: linear-gradient(
-      rgba(90, 21, 136, 0.8),
-      rgba(90, 21, 136, 0.1)
+      rgba(0, 0, 0, 0.818),
+      rgba(90, 21, 136, 0.272)
     ),
     url("/hero.png");
+}
+
+.bg-transition {
+  background-color: #9e21fb; /* Fallback color */
+  background-image: linear-gradient(
+    to right,
+    rgba(158, 33, 251, 0.4),
+    rgba(40, 88, 236, 0.4),
+    rgba(67, 208, 149, 0.4)
+  );
+  transition: background-color 0.3s ease-in-out,
+    background-image 0.6s ease-in-out;
+}
+
+.bg-transition:hover {
+  background-color: #43d095; /* Solid color for hover state */
+  background-image: linear-gradient(
+    to left,
+    rgba(158, 33, 251, 0.4),
+    rgba(40, 88, 236, 0.4),
+    rgba(67, 208, 149, 0.4)
+  );
 }
