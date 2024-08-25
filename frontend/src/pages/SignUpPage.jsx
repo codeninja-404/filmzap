@@ -5,11 +5,11 @@ const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [usernames, setUsername] = useState("");
-  console.log({ email, password, usernames });
+  const [username, setUsername] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ email, password, usernames });
+    console.log({ email, password, username });
   };
   return (
     <div className="h-screen w-full hero-bg">
@@ -19,7 +19,7 @@ const SignUpPage = () => {
         </Link>
       </header>
       <div className="flex justify-center items-center mt-20 mx-3">
-        <div className="w-full max-w-md p-8 space-y-6 bg-[#1a1a1aff]/80 rounded-lg shadow-md">
+        <div className="w-full max-w-md p-8 space-y-6 bg-[#191919]/70 rounded-lg shadow-md">
           <h1 className="text-center text-2xl font-bold mb-4">Sign Up</h1>
           <form onSubmit={handleSubmit} className="space-y-4 ">
             <div className="">
@@ -34,6 +34,7 @@ const SignUpPage = () => {
                 className="w-full px-3 py-2  mt-1 border-gray-500 border rounded-md bg-transparent focus:outline-none  focus:ring"
                 placeholder="example@gmail.com"
                 id="email"
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
@@ -49,6 +50,7 @@ const SignUpPage = () => {
                 className="w-full px-3 py-2  mt-1 border-gray-500 border rounded-md bg-transparent focus:outline-none  focus:ring"
                 placeholder="johndoe"
                 id="username"
+                value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
             </div>
@@ -65,6 +67,7 @@ const SignUpPage = () => {
                   className="w-full px-3 pr-10 py-2 mt-1 border-gray-500 border rounded-md bg-transparent focus:outline-none focus:ring"
                   placeholder="••••••••"
                   id="password"
+                  value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <button
