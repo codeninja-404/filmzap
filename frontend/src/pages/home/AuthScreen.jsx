@@ -4,7 +4,7 @@ import { useState } from "react";
 const AuthScreen = () => {
   const [email, setEmail] = useState("");
   return (
-    <div className="hero-bg relative">
+    <div className="hero-bg relative ">
       {/* Navbar */}
       <header className="max-w-6xl mx-auto flex items-center justify-between p-4 pb-10">
         <img src="/FILMZAP.svg" alt="FILMZAP Logo" className="w-32 md:w-52" />
@@ -15,7 +15,6 @@ const AuthScreen = () => {
           Sign In
         </Link>
       </header>
-
       {/* Hero Section */}
       <div className="flex flex-col items-center justify-center text-center py-40 max-w-6xl mx-auto">
         <h1 className="text-4xl md:text-6xl font-bold mb-4">
@@ -42,6 +41,14 @@ const AuthScreen = () => {
             <ChevronRight className="size-4 md:size-6" />
           </button>
         </form>
+      </div>
+      {/* devider */}
+      <div className="bottom-0 overflow-hidden w-full absolute h-60">
+        <div className="absolute -bottom-[25rem] mt-[100px] ml-[-50%] h-[500px] w-[200%] rounded-t-[100%] bg-gradient-to-r from-[#000000] from-[0%] via-[#b14affab]  via-[25%] via-[#b14affab] via-[55%] to-[#000000] to-[100%]" />
+        <div className="absolute -bottom-[25.2rem] mt-[100px] ml-[-50%] h-[500px] w-[200%] rounded-t-[100%] bg-black overflow-hidden">
+          {/* shadow */}
+          <div className="absolute  top-0 bottom-20 left-0 right-0 text-white h-0  w-1/6 mx-auto shadow"></div>
+        </div>
       </div>
     </div>
   );

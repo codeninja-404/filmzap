@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 body {
-  @apply text-white;
+  @apply text-white bg-black;
 }
 .hero-bg {
   @apply bg-cover bg-center;
@@ -33,4 +33,7 @@ body {
     rgba(40, 88, 236, 0.4),
     rgba(67, 208, 149, 0.4)
   );
+}
+.shadow {
+  box-shadow: 20px -80px 95px 55px rgba(0, 96, 255, 1);
 }
