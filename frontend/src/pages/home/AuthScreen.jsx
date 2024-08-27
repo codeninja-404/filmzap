@@ -3,6 +3,7 @@ import { ChevronRight } from "lucide-react";
 import { useState } from "react";
 import TrendingSlide from "../../components/home/TrendingSlide";
 import MoreReasons from "../../components/home/MoreReasons";
+import Faq from "../../components/home/Faq";
 
 const AuthScreen = () => {
   const [email, setEmail] = useState("");
@@ -90,6 +91,9 @@ const AuthScreen = () => {
       </div>
       <div className="mx-auto max-w-6xl px-2">
         <MoreReasons />
+      </div>
+      <div className="mx-auto max-w-6xl px-2">
+        <Faq />
       </div>
     </>
   );
