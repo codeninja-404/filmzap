@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 import { useState } from "react";
+import TrendingSlide from "../../components/TrendingSlide";
+
 const AuthScreen = () => {
   const [email, setEmail] = useState("");
+
   return (
     <>
       <div className="hero-bg relative ">
@@ -52,7 +55,7 @@ const AuthScreen = () => {
           </div>
         </div>
       </div>
-      <div className="mx-auto max-w-6xl h-20">
+      <div className="mx-auto max-w-6xl mx-2">
         <h1 className="py-2 font-bold text-3xl">Trending</h1>
         <div className="w-1/2 flex gap-4">
           <select
@@ -79,6 +82,9 @@ const AuthScreen = () => {
               Tvshow
             </option>
           </select>
+        </div>
+        <div className="relative ">
+          <TrendingSlide />
         </div>
       </div>
     </>
