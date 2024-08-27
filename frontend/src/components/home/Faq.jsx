@@ -5,7 +5,7 @@ const AccordionItem = ({ title, content }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="border">
+    <div className="border my-2">
       <button
         className="flex justify-between items-center w-full p-4 text-left"
         onClick={() => setIsOpen(!isOpen)}

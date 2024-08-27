@@ -11,15 +11,15 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 
 const slideStyles = [
-  { backgroundColor: "bg-green-400", width: "w-40" },
-  { backgroundColor: "bg-blue-400", width: "w-48" },
-  { backgroundColor: "bg-red-400", width: "w-56" },
-  { backgroundColor: "bg-yellow-400", width: "w-64" },
-  { backgroundColor: "bg-purple-400", width: "w-72" },
-  { backgroundColor: "bg-pink-400", width: "w-80" },
-  { backgroundColor: "bg-teal-400", width: "w-96" },
-  { backgroundColor: "bg-gray-400", width: "w-60" },
-  { backgroundColor: "bg-indigo-400", width: "w-52" },
+  { backgroundColor: "bg-green-400" },
+  { backgroundColor: "bg-blue-400" },
+  { backgroundColor: "bg-red-400" },
+  { backgroundColor: "bg-yellow-400" },
+  { backgroundColor: "bg-purple-400" },
+  { backgroundColor: "bg-pink-400" },
+  { backgroundColor: "bg-teal-400" },
+  { backgroundColor: "bg-gray-400" },
+  { backgroundColor: "bg-indigo-400" },
 ];
 
 const TrendingSlide = () => {
@@ -51,7 +51,7 @@ const TrendingSlide = () => {
         {slideStyles.map((style, index) => (
           <SwiperSlide
             key={index}
-            className={`flex rounded-lg items-center justify-center h-96 ${style.backgroundColor} ${style.width}`}
+            className={`flex rounded-lg items-center justify-center  w-[150px] h-[250px] ${style.backgroundColor} ${style.width}`}
           >
             Slide {index + 1}
           </SwiperSlide>
@@ -59,13 +59,13 @@ const TrendingSlide = () => {
       </Swiper>
       <div className="flex  justify-between z-10 w-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
         <button
-          className="bg-gray-900 hover:bg-gray-800 text-[22px] w-[30px] h-[200px] flex justify-center items-center transition-all rounded-xl"
+          className="bg-gray-900 hover:bg-gray-800 text-[22px] w-[20px] h-[180px] flex justify-center items-center transition-all rounded-xl"
           onClick={handlePrevClick}
         >
           <ChevronLeft />
         </button>
         <button
-          className="bg-gray-900 hover:bg-gray-800 text-[22px] w-[30px] h-[200px] flex justify-center items-center transition-all rounded-xl"
+          className="bg-gray-900 hover:bg-gray-800 text-[22px] w-[20px] h-[180px] flex justify-center items-center transition-all rounded-xl"
           onClick={handleNextClick}
         >
           <ChevronRight />
