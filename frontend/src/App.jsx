@@ -7,13 +7,19 @@ import Footer from "./components/shared/Footer";
 import { Toaster } from "react-hot-toast";
 import { useAuthStore } from "./store/authUser";
 import { useEffect } from "react";
+import Loader from "./components/shared/Loader";
 
 function App() {
   const { user, isCheckingAuth, authCheck } = useAuthStore();
   useEffect(() => {
     authCheck();
-  }, []);
-  console.log(user);
+  }, [authCheck]);
+  if (isCheckingAuth)
+    return (
+      <div className="h-screen w-screen flex justify-center items-center">
+        <Loader />
+      </div>
+    );
   return (
     <>
       <Routes>
@@ -28,6 +34,7 @@ function App() {
         />
       </Routes>
       <Footer />
+
       <Toaster />
     </>
   );
