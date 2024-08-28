@@ -1,6 +1,6 @@
 const Loader = () => {
   return (
-    <div className="p-6 bg-slate-600/40 rounded-full">
+    <div className="px-6 py-4 inline-block bg-slate-600/40 rounded-full">
       <svg
         className="animate-spin h-20"
         width="64"
