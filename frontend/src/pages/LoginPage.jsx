@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
+import { useAuthStore } from "../store/authUser";
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const { login } = useAuthStore();
   const handleSubmit = (e) => {
     e.preventDefault();
+    login({ email, password });
   };
   return (
     <div className="h-screen w-full hero-bg">

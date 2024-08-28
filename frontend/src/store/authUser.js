@@ -5,6 +5,7 @@ import { create } from "zustand";
 export const useAuthStore = create((set) => ({
   user: null,
   isSigningUp: false,
+  isLoggingIn: false,
   isCheckingAuth: false,
   isLoggingOut: false,
   signup: async (credentials) => {
@@ -34,7 +35,33 @@ export const useAuthStore = create((set) => ({
       set({ isSigningUp: false, user: null });
     }
   },
-  login: async () => {},
+  login: async (credentials) => {
+    set({ isLoggingIn: true });
+    try {
+      const res = await axios.post("/api/v1/auth/login", credentials);
+      set({ user: res.data.user, isLoggingIn: false });
+      toast.success("Logged in successfully", {
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+        },
+      });
+    } catch (error) {
+      console.log(error);
+      toast.error(
+        error.response.data.message || "An error occurred while logging in.",
+        {
+          style: {
+            borderRadius: "10px",
+            background: "#333",
+            color: "#fff",
+          },
+        },
+      );
+      set({ isLoggingIn: false, user: null });
+    }
+  },
   logout: async () => {
     set({ isLoggingOut: true });
     try {
