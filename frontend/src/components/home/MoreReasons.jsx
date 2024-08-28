@@ -1,8 +1,13 @@
 import { Database, LucideEye, Star, FileText } from "lucide-react";
 
 const FeatureCard = ({ title, description, icon }) => (
-  <div className="bg-gray-800 rounded-lg p-4 flex flex-col items-start space-y-3 hover:bg-gray-700 transition-colors duration-300">
-    <div className="bg-blue-500 p-2 rounded-full">{icon}</div>
+  <div
+    className="bg-gradient-to-l from-[#1f1f1f] from-[0%] via-[#362b4b] via-[25%] via-[#362b4b] via-[55%] to-[#1f1f1f]
+ rounded-lg p-4 flex flex-col items-start space-y-3 "
+  >
+    <div className="bg-gradient-to-r from-[#000000] from-[0%] via-[#b14affab]  via-[25%] via-[#b14affab] via-[55%] to-[#000000] to-[100%] p-2 rounded-full">
+      {icon}
+    </div>
     <h3 className="text-white text-lg font-semibold">{title}</h3>
     <p className="text-gray-300 text-sm">{description}</p>
   </div>

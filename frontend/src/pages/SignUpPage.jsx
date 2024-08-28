@@ -2,8 +2,10 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
 const SignUpPage = () => {
+  const { searchParams } = new URL(document.location);
+  const emailValue = searchParams.get("email");
   const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(emailValue || "");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
 

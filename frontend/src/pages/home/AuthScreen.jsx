@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 import { useState } from "react";
 import TrendingSlide from "../../components/home/TrendingSlide";
@@ -7,20 +7,15 @@ import Faq from "../../components/home/Faq";
 
 const AuthScreen = () => {
   const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
+    navigate("/signup?email=" + email);
+  };
   return (
     <>
       <div className="hero-bg relative ">
-        {/* Navbar */}
-        <header className="max-w-6xl mx-auto flex items-center justify-between p-4 pb-10">
-          <img src="/FILMZAP.svg" alt="FILMZAP Logo" className="w-32 md:w-52" />
-          <Link
-            to={"/login"}
-            className="text-white bg-transition py-1 px-2 rounded"
-          >
-            Sign In
-          </Link>
-        </header>
         {/* Hero Section */}
         <div className="flex flex-col items-center justify-center text-center py-40 max-w-6xl mx-auto">
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
@@ -33,7 +28,10 @@ const AuthScreen = () => {
             Ready to explore? Enter your email to start your journey.
           </p>
 
-          <form className="flex flex-col md:flex-row gap-4 w-1/2">
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col md:flex-row gap-4 w-1/2"
+          >
             <input
               type="email"
               className="p-2 flex-1 border-gray-500 border rounded-md bg-transparent focus:outline-none focus:ring"
