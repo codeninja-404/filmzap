@@ -106,3 +106,11 @@ export const logout = async (req, res) => {
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
+export const authCheck = async (req, res) => {
+  try {
+    res.status(200).json({ success: true, user: req.user });
+  } catch (error) {
+    console.log("Error in auth check controller", error.message);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
+};

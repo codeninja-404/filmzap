@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useAuthStore } from "../../store/authUser";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const user = false; // Replace this with actual user authentication logic
+  const { user, logout } = useAuthStore();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,6 +38,14 @@ const Header = () => {
         >
           {user ? "User" : "Sign In"}
         </Link>
+        {user && (
+          <button
+            onClick={logout}
+            className="text-white bg-red-500 transition-colors py-1 px-2 rounded"
+          >
+            Sign Out
+          </button>
+        )}
       </header>
     </div>
   );
