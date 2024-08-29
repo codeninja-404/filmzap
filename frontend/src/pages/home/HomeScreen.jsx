@@ -1,6 +1,9 @@
 import { Info, Play } from "lucide-react";
 import { Link } from "react-router-dom";
+import useGetTrending from "../../hooks/useGetTrending";
 const HomeScreen = () => {
+  const { trending } = useGetTrending();
+  console.log(trending);
   return (
     <>
       <div className="relative h-screen pt-20">
