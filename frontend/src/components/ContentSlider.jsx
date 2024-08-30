@@ -24,6 +24,7 @@ const ContentSlider = ({ category }) => {
 
   useEffect(() => {
     const getContent = async () => {
+      setContents([]);
       const res = await axios.get(`/api/v1/${contentType}/${category}`);
       // Use setTimeout to delay the state update by 2 seconds (2000 milliseconds)
       setTimeout(() => {
