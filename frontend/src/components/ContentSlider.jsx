@@ -25,8 +25,11 @@ const ContentSlider = ({ category }) => {
   useEffect(() => {
     const getContent = async () => {
       const res = await axios.get(`/api/v1/${contentType}/${category}`);
-      setContents(res.data.content);
-      setTotalSlides(res.data.content.length);
+      // Use setTimeout to delay the state update by 2 seconds (2000 milliseconds)
+      setTimeout(() => {
+        setContents(res.data.content);
+        setTotalSlides(res.data.content.length);
+      }, 2000);
     };
     getContent();
   }, [category, contentType]);
@@ -41,19 +44,25 @@ const ContentSlider = ({ category }) => {
         <h2 className="font-bold text-2xl text-white">{formattedCategory}</h2>
         <div className="flex items-center gap-2">
           <button
-            className="text-gray-400 hover:text-white"
+            className="text-gray-400 hover:text-white bg-transition p-0.5 rounded-lg"
             onClick={() => swiperRef.current?.slidePrev()}
           >
-            <ChevronLeft size={24} />
+            <ChevronLeft
+              className="bg-gray-900/90  p-1 rounded-md "
+              size={30}
+            />
           </button>
           <div className="text-sm text-gray-400">
             {activeIndex + 1} / {totalSlides}
           </div>
           <button
-            className="text-gray-400 hover:text-white"
+            className="text-gray-400 hover:text-white bg-transition p-0.5 rounded-lg"
             onClick={() => swiperRef.current?.slideNext()}
           >
-            <ChevronRight size={24} />
+            <ChevronRight
+              className="bg-gray-900/90 p-1  rounded-md"
+              size={30}
+            />
           </button>
         </div>
       </div>
@@ -76,11 +85,24 @@ const ContentSlider = ({ category }) => {
           ))}
         </Swiper>
       ) : (
-        <div className="flex gap-4">
+        <Swiper
+          modules={[Navigation, Pagination]}
+          spaceBetween={20}
+          slidesPerView="auto"
+          loop={true}
+          onBeforeInit={(swiper) => {
+            swiperRef.current = swiper;
+          }}
+          onSlideChange={handleSlideChange}
+          className="mySwiper"
+        >
+          {" "}
           {Array.from({ length: 5 }).map((_, index) => (
-            <ContentCardSkeleton key={index} />
+            <SwiperSlide key={index + 1} className="w-auto">
+              <ContentCardSkeleton />
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
       )}
     </div>
   );

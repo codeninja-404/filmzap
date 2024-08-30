@@ -12,7 +12,7 @@ const HomeScreen = () => {
   return (
     <>
       <TrendingBanner trending={trending} />
-      <div className=" mx-auto max-w-6xl flex flex-col  gap-10 my-10 px-2">
+      <div className=" mx-auto max-w-6xl flex flex-col  gap-10 my-36 md:my-10 px-2">
         {contentType === "movie"
           ? MOVIE_CATEGORIES.map((category) => (
               <ContentSlider key={category.id} category={category} />
