@@ -8,7 +8,7 @@ import ContentSlider from "../../components/ContentSlider";
 const HomeScreen = () => {
   const { trending } = useGetTrending();
   const { contentType } = useContentStore();
-  console.log(trending);
+
   return (
     <>
       <TrendingBanner trending={trending} />

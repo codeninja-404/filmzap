@@ -11,7 +11,7 @@ const ContentCard = ({ content }) => {
     first_air_date,
     vote_average,
   } = content;
-  console.log(content);
+
   return (
     <div className="bg-gray-900 group p-4  max-w-sm mx-auto rounded-lg shadow-lg">
       <div className="relative w-48 overflow-hidden rounded-t-lg">
