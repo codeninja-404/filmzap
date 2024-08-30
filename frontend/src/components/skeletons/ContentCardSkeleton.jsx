@@ -23,7 +23,6 @@ const ContentCardSkeleton = () => {
         </div>
         <div className="flex items-center border-gray-600 border px-2 py-0.5 rounded-full">
           <div className="h-4 w-4 bg-gray-700 rounded-full mr-1"></div>
-          <span className="h-4 bg-gray-700 rounded w-8"></span>
         </div>
       </div>
     </div>
