@@ -21,8 +21,9 @@ const TrendingBanner = ({ trending }) => {
       <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center">
         <div className="absolute top-0 left-0 w-full bg-gradient-to-b from-[#4a1077]/60 to-black h-full  -z-50" />
       </div>
+
       <div className="pt-20 md:pt-40 flex flex-col-reverse md:flex-row px-2 items-center justify-around ">
-        <div className="md:max-w-xl lg:max-w-2xl">
+        <div className="md:max-w-xl ">
           <h1 className="mt-4 text-6xl font-extrabold text-balance">
             {trending?.title || trending?.name}
           </h1>
