@@ -4,6 +4,7 @@ import { useContentStore } from "../store/content";
 import axios from "axios";
 import Header from "../components/shared/Header";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import TrailerSlider from "../components/sliders/TrailerSlider";
 
 const WatchPage = () => {
   const { id } = useParams();
@@ -11,7 +12,6 @@ const WatchPage = () => {
   const [loading, setLoading] = useState(true);
   const [content, setContent] = useState({});
   const [similarContent, setSimilarContent] = useState([]);
-  const [currentTrailerIdx, setCurrentTrailerIdx] = useState(0);
   const [contentCredits, setContentCredits] = useState([]);
   const { contentType } = useContentStore();
   console.log(id);
@@ -74,23 +74,8 @@ const WatchPage = () => {
   return (
     <div className="min-h-screen">
       <Header />
-      <div className="mx-auto container  pt-20">
-        {trailers.length > 0 && (
-          <div className="flex justify-between items-center mb-4">
-            <button className="text-gray-400 hover:text-white bg-transition p-0.5 rounded-lg">
-              <ChevronLeft
-                className="bg-gray-900/90  p-1 rounded-md "
-                size={30}
-              />
-            </button>
-            <button className="text-gray-400 hover:text-white bg-transition p-0.5 rounded-lg">
-              <ChevronRight
-                className="bg-gray-900/90  p-1 rounded-md "
-                size={30}
-              />
-            </button>
-          </div>
-        )}
+      <div className="mx-auto container  pt-28">
+        <TrailerSlider trailers={trailers} />
       </div>
     </div>
   );
