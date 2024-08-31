@@ -8,7 +8,7 @@ const TrendingBanner = ({ trending }) => {
     return <TrendingBannerSkeleton />;
   }
   return (
-    <div className="relative h-screen md:h-[70vh] h-sm:mb-64 h-md:mb-32 h-lg:mb-0">
+    <div className="relative min:h-screen md:min-h-[70vh] ">
       <img
         src={ORIGINAL_IMG_BASE_URL + trending?.backdrop_path}
         className="absolute top-0 left-0 w-full h-full object-cover -z-50"

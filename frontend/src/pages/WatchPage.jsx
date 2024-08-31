@@ -2,16 +2,20 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useContentStore } from "../store/content";
 import axios from "axios";
+import Header from "../components/shared/Header";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const WatchPage = () => {
   const { id } = useParams();
   const [trailers, setTrailers] = useState([]);
-  const [loading, setloading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [content, setContent] = useState({});
-  const [similerContent, setSimilerContent] = useState([]);
+  const [similarContent, setSimilarContent] = useState([]);
+  const [currentTrailerIdx, setCurrentTrailerIdx] = useState(0);
+  const [contentCredits, setContentCredits] = useState([]);
   const { contentType } = useContentStore();
   console.log(id);
-  console.log(trailers, similerContent);
+
   useEffect(() => {
     const getTrailers = async () => {
       try {
@@ -26,19 +30,70 @@ const WatchPage = () => {
     getTrailers();
   }, [contentType, id]);
   useEffect(() => {
-    const getSimilerContent = async () => {
+    const getSimilarContent = async () => {
       try {
         const res = await axios.get(`/api/v1/${contentType}/${id}/similar`);
-        setSimilerContent(res.data.similar);
+        setSimilarContent(res.data.similar);
       } catch (error) {
         if (error.message.includes("404")) {
-          setSimilerContent([]);
+          setSimilarContent([]);
         }
       }
     };
-    getSimilerContent();
+    getSimilarContent();
   }, [contentType, id]);
-  return <div>WatchPage</div>;
+  useEffect(() => {
+    const getContentDetails = async () => {
+      try {
+        const res = await axios.get(`/api/v1/${contentType}/${id}/details`);
+        setContent(res.data.content);
+      } catch (error) {
+        if (error.message.includes("404")) {
+          setContent([]);
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+    getContentDetails();
+  }, [contentType, id]);
+  useEffect(() => {
+    const getContentCredits = async () => {
+      try {
+        const res = await axios.get(`/api/v1/${contentType}/${id}/credits`);
+        setContentCredits(res.data.credits);
+      } catch (error) {
+        if (error.message.includes("404")) {
+          setContentCredits([]);
+        }
+      }
+    };
+    getContentCredits();
+  }, [contentType, id]);
+
+  return (
+    <div className="min-h-screen">
+      <Header />
+      <div className="mx-auto container  pt-20">
+        {trailers.length > 0 && (
+          <div className="flex justify-between items-center mb-4">
+            <button className="text-gray-400 hover:text-white bg-transition p-0.5 rounded-lg">
+              <ChevronLeft
+                className="bg-gray-900/90  p-1 rounded-md "
+                size={30}
+              />
+            </button>
+            <button className="text-gray-400 hover:text-white bg-transition p-0.5 rounded-lg">
+              <ChevronRight
+                className="bg-gray-900/90  p-1 rounded-md "
+                size={30}
+              />
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default WatchPage;
