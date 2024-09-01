@@ -83,7 +83,7 @@ const TrailerSlider = ({ trailers, content }) => {
         </div>
       )}
       {trailers?.length === 0 && (
-        <h2 className="text-xl text-center mt-5">
+        <h2 className="text-xl pb-32 text-center mt-5">
           No trailers available for{" "}
           <span className="font-bold text-red-600">
             {content?.title || content?.name}

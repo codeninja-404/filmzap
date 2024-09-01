@@ -6,6 +6,7 @@ import Header from "../components/shared/Header";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import TrailerSlider from "../components/sliders/TrailerSlider";
 import ContentDetails from "../components/ContentDetails";
+import ContentSlider from "../components/sliders/ContentSlider";
 
 const WatchPage = () => {
   const { id } = useParams();
@@ -30,19 +31,7 @@ const WatchPage = () => {
     };
     getTrailers();
   }, [contentType, id]);
-  useEffect(() => {
-    const getSimilarContent = async () => {
-      try {
-        const res = await axios.get(`/api/v1/${contentType}/${id}/similar`);
-        setSimilarContent(res.data.similar);
-      } catch (error) {
-        if (error.message.includes("404")) {
-          setSimilarContent([]);
-        }
-      }
-    };
-    getSimilarContent();
-  }, [contentType, id]);
+
   useEffect(() => {
     const getContentDetails = async () => {
       try {
@@ -78,6 +67,9 @@ const WatchPage = () => {
       <div className="mx-auto container  pt-28">
         <TrailerSlider trailers={trailers} content={content} />
         <ContentDetails content={content} />
+        <div className="my-10 max-w-6xl mx-auto">
+          <ContentSlider id={id} />
+        </div>
       </div>
     </div>
   );

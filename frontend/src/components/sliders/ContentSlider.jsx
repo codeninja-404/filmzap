@@ -12,37 +12,54 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import ContentCardSkeleton from "../skeletons/ContentCardSkeleton";
 
-const ContentSlider = ({ category }) => {
+const ContentSlider = ({ category, id }) => {
   const { contentType } = useContentStore();
   const [contents, setContents] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [totalSlides, setTotalSlides] = useState(0);
   const swiperRef = useRef(null);
-  const formattedCategory =
-    category.replaceAll("_", " ")[0].toUpperCase() +
-    category.replaceAll("_", " ").slice(1);
-
-  useEffect(() => {
-    const getContent = async () => {
-      setContents([]);
-      const res = await axios.get(`/api/v1/${contentType}/${category}`);
-      // Use setTimeout to delay the state update by 2 seconds (2000 milliseconds)
-      setTimeout(() => {
-        setContents(res.data.content);
-        setTotalSlides(res.data.content.length);
-      }, 2000);
-    };
-    getContent();
-  }, [category, contentType]);
+  const formattedCategory = category
+    ? category.replaceAll("_", " ").replace(/^\w/, (c) => c.toUpperCase())
+    : "";
 
   const handleSlideChange = (swiper) => {
     setActiveIndex(swiper.realIndex);
   };
+  useEffect(() => {
+    const getContent = async () => {
+      setContents([]);
+      try {
+        let res;
+        if (id) {
+          res = await axios.get(`/api/v1/${contentType}/${id}/similar`);
+          setTimeout(() => {
+            setContents(res.data.content);
+            setTotalSlides(res.data.content.length);
+          }, 2000);
+        } else {
+          res = await axios.get(`/api/v1/${contentType}/${category}`);
 
+          setTimeout(() => {
+            setContents(res.data.content);
+            setTotalSlides(res.data.content.length);
+          }, 2000);
+        }
+      } catch (error) {
+        if (error.message.includes("404")) {
+          setContents([]);
+        } else {
+          console.error("Error fetching content:", error);
+        }
+      }
+    };
+    getContent();
+  }, [category, contentType, id]);
   return (
     <div className="relative">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="font-bold text-2xl text-white">{formattedCategory}</h2>
+        <h2 className="font-bold text-2xl text-white">
+          {formattedCategory || "Similar Content"}
+        </h2>
         <div className="flex items-center gap-2">
           <button
             className="text-gray-400 hover:text-white bg-transition p-0.5 rounded-lg"
