@@ -16,12 +16,15 @@ const TrailerSlider = ({ trailers }) => {
 
   return (
     <div className="relative">
-      <div className="flex justify-between items-center mb-4 px-2">
+      <div className="flex justify-around items-center mb-4 px-2">
         <button
-          className="text-gray-400 hover:text-white bg-transition p-0.5 rounded-lg"
+          className={`text-gray-400 hover:text-white bg-transition p-0.5 rounded-lg ${
+            activeIndex === 0 ? "opacity-20 cursor-not-allowed" : ""
+          }`}
           onClick={() => {
             swiperRef.current?.slidePrev();
           }}
+          disabled={activeIndex === 0}
         >
           <ChevronLeft className="bg-gray-900/90 p-1 rounded-md" size={30} />
         </button>
@@ -29,10 +32,15 @@ const TrailerSlider = ({ trailers }) => {
           {activeIndex + 1} / {trailers.length}
         </div>
         <button
-          className="text-gray-400 hover:text-white bg-transition p-0.5 rounded-lg"
+          className={`text-gray-400 hover:text-white bg-transition p-0.5 rounded-lg ${
+            activeIndex === trailers.length - 1
+              ? "opacity-20 cursor-not-allowed"
+              : ""
+          }`}
           onClick={() => {
             swiperRef.current?.slideNext();
           }}
+          disabled={activeIndex === trailers.length - 1}
         >
           <ChevronRight className="bg-gray-900/90 p-1 rounded-md" size={30} />
         </button>
@@ -49,15 +57,17 @@ const TrailerSlider = ({ trailers }) => {
       >
         {trailers?.map((trailer, index) => (
           <SwiperSlide key={index}>
-            <div className="aspect-video mb-8 p-2 sm:px-10 md:px-32">
-              <ReactPlayer
-                controls={true}
-                playing={isPlaying}
-                width="100%"
-                height="70vh"
-                className="mx-auto overflow-hidden rounded-lg"
-                url={`https://www.youtube.com/watch?v=${trailer.key}`}
-              />
+            <div className="aspect-video  mb-8 p-2 sm:px-10 md:px-32">
+              <div className="bg-gray-800 rounded-lg ">
+                <ReactPlayer
+                  controls={true}
+                  playing={isPlaying}
+                  width="100%"
+                  height="70vh"
+                  className="mx-auto overflow-hidden rounded-lg"
+                  url={`https://www.youtube.com/watch?v=${trailer.key}`}
+                />
+              </div>
             </div>
           </SwiperSlide>
         ))}
