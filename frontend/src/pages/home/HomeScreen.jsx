@@ -4,7 +4,8 @@ import TrendingBanner from "../../components/TrendingBanner";
 
 import { useContentStore } from "../../store/content";
 import { MOVIE_CATEGORIES, TV_CATEGORIES } from "../../utils/constants";
-import ContentSlider from "../../components/ContentSlider";
+import ContentSlider from "../../components/sliders/ContentSlider";
+
 const HomeScreen = () => {
   const { trending } = useGetTrending();
   const { contentType } = useContentStore();

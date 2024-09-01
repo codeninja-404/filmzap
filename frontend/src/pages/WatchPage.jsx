@@ -5,6 +5,7 @@ import axios from "axios";
 import Header from "../components/shared/Header";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import TrailerSlider from "../components/sliders/TrailerSlider";
+import ContentDetails from "../components/ContentDetails";
 
 const WatchPage = () => {
   const { id } = useParams();
@@ -75,7 +76,8 @@ const WatchPage = () => {
     <div className="min-h-screen">
       <Header />
       <div className="mx-auto container  pt-28">
-        <TrailerSlider trailers={trailers} />
+        <TrailerSlider trailers={trailers} content={content} />
+        <ContentDetails content={content} />
       </div>
     </div>
   );

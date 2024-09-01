@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
-import { useContentStore } from "../store/content";
+import { useContentStore } from "../../store/content";
 import axios from "axios";
-import ContentCard from "./ContentCard";
+import ContentCard from "../ContentCard";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
@@ -10,7 +10,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import ContentCardSkeleton from "./skeletons/ContentCardSkeleton";
+import ContentCardSkeleton from "../skeletons/ContentCardSkeleton";
 
 const ContentSlider = ({ category }) => {
   const { contentType } = useContentStore();
