@@ -17,6 +17,7 @@ const ContentSlider = ({ category, id }) => {
   const [contents, setContents] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [totalSlides, setTotalSlides] = useState(0);
+
   const swiperRef = useRef(null);
   const formattedCategory = category
     ? category.replaceAll("_", " ").replace(/^\w/, (c) => c.toUpperCase())
@@ -33,8 +34,8 @@ const ContentSlider = ({ category, id }) => {
         if (id) {
           res = await axios.get(`/api/v1/${contentType}/${id}/similar`);
           setTimeout(() => {
-            setContents(res.data.content);
-            setTotalSlides(res.data.content.length);
+            setContents(res.data.similar);
+            setTotalSlides(res.data.similar.length);
           }, 2000);
         } else {
           res = await axios.get(`/api/v1/${contentType}/${category}`);

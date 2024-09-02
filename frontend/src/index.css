@@ -37,3 +37,15 @@ body {
 .shadow {
   box-shadow: 20px -80px 95px 55px rgba(6, 73, 255, 0.827);
 }
+
+.mySwiper {
+  @apply pb-20 md:pb-14;
+}
+
+.swiper-pagination-bullet {
+  @apply !bg-[#9e21fb];
+}
+.swiper-pagination {
+  @apply absolute  top-10;
+  transform: translateY(10px);
+}

@@ -12,15 +12,20 @@ import WatchPage from "./pages/WatchPage";
 
 function App() {
   const { user, isCheckingAuth, authCheck } = useAuthStore();
+  console.log("User:", user);
+  console.log("Is checking auth:", isCheckingAuth);
   useEffect(() => {
     authCheck();
   }, [authCheck]);
-  if (isCheckingAuth)
+
+  if (isCheckingAuth) {
     return (
       <div className="h-screen w-screen flex justify-center items-center">
         <Loader />
       </div>
     );
+  }
+
   return (
     <>
       <Routes>

@@ -3,20 +3,21 @@ import { useParams } from "react-router-dom";
 import { useContentStore } from "../store/content";
 import axios from "axios";
 import Header from "../components/shared/Header";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+
 import TrailerSlider from "../components/sliders/TrailerSlider";
 import ContentDetails from "../components/ContentDetails";
 import ContentSlider from "../components/sliders/ContentSlider";
+import ContentCredits from "../components/ContentCredits";
 
 const WatchPage = () => {
   const { id } = useParams();
   const [trailers, setTrailers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [content, setContent] = useState({});
-  const [similarContent, setSimilarContent] = useState([]);
+
   const [contentCredits, setContentCredits] = useState([]);
   const { contentType } = useContentStore();
-  console.log(id);
+  console.log(contentCredits);
 
   useEffect(() => {
     const getTrailers = async () => {
@@ -66,8 +67,9 @@ const WatchPage = () => {
       <Header />
       <div className="mx-auto container  pt-28">
         <TrailerSlider trailers={trailers} content={content} />
-        <ContentDetails content={content} />
-        <div className="my-10 max-w-6xl mx-auto">
+        <ContentDetails content={content} contentCredits={contentType} />
+        <ContentCredits contentCredits={contentCredits} />
+        <div className="my-20 max-w-6xl mx-auto">
           <ContentSlider id={id} />
         </div>
       </div>
