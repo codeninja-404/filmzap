@@ -1,15 +1,24 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
 import { useAuthStore } from "../store/authUser";
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login } = useAuthStore();
-  const handleSubmit = (e) => {
+  const { login, isLoggingIn } = useAuthStore();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    login({ email, password });
+    try {
+      await login({ email, password });
+      const origin = location.state?.from?.pathname || "/";
+      navigate(origin);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
   return (
     <div className="h-screen w-full hero-bg">

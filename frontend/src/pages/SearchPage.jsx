@@ -13,7 +13,7 @@ const SearchPage = () => {
   const { setContentType } = useContentStore();
   const tabs = [
     { name: "Movie", value: "movie" },
-    { name: "TvShows", value: "tv" },
+    { name: "Tv Show", value: "tv" },
     { name: "Person", value: "person" },
   ];
 

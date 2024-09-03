@@ -18,7 +18,7 @@ const Header = () => {
       label: "TV Shows",
       onClick: () => setContentType("tv"),
     },
-    { to: "/search", label: "Search History" },
+    { to: "/history", label: "Search History" },
   ];
 
   const [isScrolled, setIsScrolled] = useState(false);
@@ -78,7 +78,9 @@ const Header = () => {
         <div className="flex items-center space-x-4">
           {user ? (
             <>
-              <Search className="  cursor-pointer" />
+              <Link to="/search">
+                <Search className="  cursor-pointer" />
+              </Link>
               <Link
                 to="/profile"
                 className="  rounded-full bg-transition transition-colors p-[3px] "

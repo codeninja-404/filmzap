@@ -16,10 +16,10 @@ const HomeScreen = () => {
       <div className=" mx-auto max-w-6xl flex flex-col  gap-10 my-10 px-2">
         {contentType === "movie"
           ? MOVIE_CATEGORIES.map((category) => (
-              <ContentSlider key={category.id} category={category} />
+              <ContentSlider key={`movie-${category}`} category={category} />
             ))
           : TV_CATEGORIES.map((category) => (
-              <ContentSlider key={category.id} category={category} />
+              <ContentSlider key={`tv-${category}`} category={category} />
             ))}
       </div>
     </>
