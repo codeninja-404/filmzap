@@ -17,7 +17,6 @@ const WatchPage = () => {
 
   const [contentCredits, setContentCredits] = useState([]);
   const { contentType } = useContentStore();
-  console.log(contentCredits);
 
   useEffect(() => {
     const getTrailers = async () => {
