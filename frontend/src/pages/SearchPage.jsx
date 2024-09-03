@@ -21,13 +21,14 @@ const SearchPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
+  const [isFocused, setIsFocused] = useState(false);
   const { setContentType } = useContentStore();
   const tabs = [
     { name: "Movie", value: "movie" },
     { name: "Tv Show", value: "tv" },
     { name: "Person", value: "person" },
   ];
-  console.log(suggestions);
+
   const handleTabChange = (tab) => {
     setActiveTab(tab);
     tab === "movie" ? setContentType("movie") : setContentType("tv");
@@ -118,17 +119,19 @@ const SearchPage = () => {
               placeholder={`Search for ${activeTab}`}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setTimeout(() => setIsFocused(false), 200)}
             />
             <button className="bg-transition rounded-md rounded-l-none p-2">
               <Search />
             </button>
           </div>
-          {suggestions.length > 0 && (
-            <ul className="absolute top-12 left-0 px-2 right-0 flex   rounded-md  gap-2 flex-wrap shadow-lg z-10">
+          {isFocused && suggestions.length > 0 && (
+            <ul className="absolute top-12 left-0 px-2 right-0 flex rounded-md gap-2 flex-wrap shadow-lg z-10">
               {suggestions.map((suggestion, index) => (
                 <li
                   key={suggestion.id || index}
-                  className="relative  px-3 py-2 transition-all duration-300 bg-gray-900/60 hover:bg-gray-700/60 rounded-md cursor-pointer"
+                  className="relative px-3 py-2 transition-all duration-300 bg-gray-900/60 hover:bg-gray-700/60 rounded-md cursor-pointer"
                   onClick={() => {
                     setSearchTerm(suggestion.title || suggestion.name);
                     setSuggestions([]);

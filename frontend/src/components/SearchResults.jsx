@@ -16,7 +16,6 @@ const SearchResults = ({ results, activeTab }) => {
                 {result.title || result.name}
               </h2>
               <p className="text-sm text-gray-400">{result.release_date}</p>
-              <p className="text-sm text-gray-400 mt-2">{result.overview}</p>
             </>
           ) : activeTab === "person" ? (
             <>
